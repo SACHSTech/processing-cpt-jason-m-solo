@@ -2,4 +2,10 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=13292923&assignment_repo_type=AssignmentRepo)
 # Program Title (edit this)
 
-Put your program description here.
+Put your program description here. The objective of this assignment is to produce a game while using as many stuff that is in the course and using them in the right place while making sure the game is functional and make sence, the objective of this game is for the player to 
+
+be presented upon a screen with the game's name and will allow the player to press " c " to start the game, once pressed, the background of the game will appear and there will be circles ramdomly generated from the top of the screen and they will fall to the bottom of the srceen and the player will control a bin( a rectangle) that will move at the bottom of the screen, at the start the player will also input two or more int as array and the sum or product of the array is the times that the player needs to collect the circle, if they succ seed that a image of a clapping person will appear and the game ends
+
+*only condition of this game is that the player can't touch the edges of the window if the edges are touched the game ends
+
+This game only have one level and the diffcultity is set by the play thorught array input, thus no scoring system
