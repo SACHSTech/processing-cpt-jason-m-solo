@@ -9,8 +9,7 @@ public class Sketch extends PApplet {
   //float[] circleY = new float[25];
   
   public void settings(){
-    size(300, 150);
-    //size(500,500);
+    size(300, 150);             
   }
 
   PImage blackBg;
@@ -66,9 +65,6 @@ float bouncingRectSpeedY = 1;
       g[i] = random(256);
       b[i] = random(256);
     }
-    
-
-    
   }
 
   public void draw() {
@@ -112,20 +108,27 @@ float bouncingRectSpeedY = 1;
   
       fill(r[i], g[i], b[i]);
       ellipse(x[i], y[i], size[i], size[i]);
-    }
-    
 
-    System.out.print(x);
+      System.out.println((int)y[i]);
+      System.out.println((int)x[i]);
+      System.out.println(mouseX);
+      System.out.println(mouseY);
+      
+      //circle edge detection
+      if((int)x[i] > mouseX && (int)x[i] < mouseX + 20){
+        if((int)y[i] > mouseY && (int)y[i] < mouseY + 10){
+          image(clapping, 0, 0);
+        }
+      }
+    }
+
     
     //player
     fill(1);
     rect(mouseX,mouseY, 20,10);
     
     //edges
-    if(mouseX >= width-20  ){
-     // image(clapping, 0, 0);
-
-      //fill(0,255,51);
+    if(mouseX >= width-20){
       image(gamebg2, 0, 0);
 
      for(int i = 0; i < ballCount; i++){
@@ -142,6 +145,12 @@ float bouncingRectSpeedY = 1;
   
       fill(r[i], g[i], b[i]);
       ellipse(x[i], y[i], size[i], size[i]);
+
+      if((int)x[i] > mouseX && (int)x[i] < mouseX + 20){
+        if((int)y[i] > mouseY && (int)y[i] < mouseY + 10){
+          image(clapping, 0, 0);
+        }
+      }
     }
     }
 
@@ -152,7 +161,7 @@ float bouncingRectSpeedY = 1;
     if(mouseX <= 5 || mouseY <= 5){
       image(endding2, 0, 0);
        }
-    }
+      }
    }
   
   
