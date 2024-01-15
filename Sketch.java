@@ -18,9 +18,10 @@ public class Sketch extends PApplet {
   PImage endding2;
   PImage jump;
   PImage gamebg2;
+  PImage endding4;
   Random myRandom = new Random();
   int intRandom = myRandom.nextInt(width);
-  int lvlDiff;
+  int lvlDiff =0;
   float circleX;
   float speed1 = 1;
 
@@ -50,7 +51,7 @@ float bouncingRectSpeedY = 1;
     endding2 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT ending2.jpg");
     jump = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT jump.jpg");
     gamebg2 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT gamebg2.jpg");
-
+    endding4 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\endding4.jpg");
    // for(int i = 0; i < circleY.length; i++){
     //  circleY[i] = random(height);
     //}
@@ -79,6 +80,7 @@ float bouncingRectSpeedY = 1;
     fill(0,0,204);
     textSize(20);
     text("Press c to start",90,80);
+    
     
     //faling objects
     if(key == 'c'){
@@ -114,11 +116,13 @@ float bouncingRectSpeedY = 1;
       System.out.println(mouseX);
       System.out.println(mouseY);
       
-      //circle edge detection
+      //circle edge 
       if((int)x[i] > mouseX && (int)x[i] < mouseX + 20){
         if((int)y[i] > mouseY && (int)y[i] < mouseY + 10){
           image(clapping, 0, 0);
+          lvlDiff++;
         }
+      
       }
     }
 
@@ -128,19 +132,19 @@ float bouncingRectSpeedY = 1;
     rect(mouseX,mouseY, 20,10);
     
     //edges
-    if(mouseX >= width-20){
+    if(lvlDiff>5){
       image(gamebg2, 0, 0);
 
      for(int i = 0; i < ballCount; i++){
 
       x[i] += xSpeed[i];
       if(x[i] < 0 || x[i] > width){
-        xSpeed[i] *= -2;
+        xSpeed[i] *= -1.25;
       }
   
       y[i] += ySpeed[i];
       if(y[i] < 0 || y[i] > height){
-        ySpeed[i] *= -2;
+        ySpeed[i] *= -1.25;
       }
   
       fill(r[i], g[i], b[i]);
@@ -152,16 +156,25 @@ float bouncingRectSpeedY = 1;
         }
       }
     }
+  }
     }
-
-    }
-       if( mouseY >= height-20){
+    if( mouseY >= height-20){
      image(endding2, 0, 0);
+     //lvlDiff = -1;
     }
     if(mouseX <= 5 || mouseY <= 5){
       image(endding2, 0, 0);
+      //lvlDiff = -1;
        }
-      }
-   }
+
+    //if (lvlDiff==-1){
+      //image(endding2, 0, 0);
+    //}
+       if(lvlDiff>10){
+        image(blackBg, 0, 0);
+        image(endding4, 40,-30);
+    }
+  }
+}
   
   
