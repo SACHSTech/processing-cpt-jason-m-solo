@@ -9,7 +9,8 @@ public class Sketch extends PApplet {
   //float[] circleY = new float[25];
   
   public void settings(){
-    size(300, 150);             
+    size(300, 150);   
+    //size(500,500);          
   }
 
   PImage blackBg;
@@ -19,13 +20,13 @@ public class Sketch extends PApplet {
   PImage jump;
   PImage gamebg2;
   PImage endding4;
+  PImage bg4;
   Random myRandom = new Random();
   int intRandom = myRandom.nextInt(width);
-  int lvlDiff =0;
+  int lvlDiff = 0;
   float circleX;
   float speed1 = 1;
-
- int ballCount = 10;
+  int ballCount = 10;
 
 float[] x = new float[ballCount];
 float[] y = new float[ballCount];
@@ -52,6 +53,7 @@ float bouncingRectSpeedY = 1;
     jump = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT jump.jpg");
     gamebg2 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT gamebg2.jpg");
     endding4 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\endding4.jpg");
+    bg4 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\bg4.jpg");
    // for(int i = 0; i < circleY.length; i++){
     //  circleY[i] = random(height);
     //}
@@ -79,23 +81,18 @@ float bouncingRectSpeedY = 1;
     text("Game",110,50);
     fill(0,0,204);
     textSize(20);
-    text("Press c to start",90,80);
+    text("Press 'c' to start",90,80);
+    fill(255,255,204);
+    textSize(15);
+    text("Chase the balls!!1!",95,100);
     
     
     //faling objects
     if(key == 'c'){
       fill(0,255,51);
       image(gameBg, 0, 0);
-      // for (int i = 0; i < circleY.length; i++){
-      //float circleX = width * i/ circleY.length;
-     // ellipse(circleX, circleY[i], 25, 25);
-  
-      //circleY[i]++;
-  
-     // if (circleY[i] > height){
-     //   circleY[i] = 0;
-     // }
     
+    // lvl1
      for(int i = 0; i < ballCount; i++){
 
       x[i] += xSpeed[i];
@@ -111,10 +108,10 @@ float bouncingRectSpeedY = 1;
       fill(r[i], g[i], b[i]);
       ellipse(x[i], y[i], size[i], size[i]);
 
-      System.out.println((int)y[i]);
-      System.out.println((int)x[i]);
-      System.out.println(mouseX);
-      System.out.println(mouseY);
+      //System.out.println((int)y[i]);
+     // System.out.println((int)x[i]);
+      //System.out.println(mouseX);
+      //System.out.println(mouseY);
       
       //circle edge 
       if((int)x[i] > mouseX && (int)x[i] < mouseX + 20){
@@ -125,26 +122,25 @@ float bouncingRectSpeedY = 1;
       
       }
     }
-
     
     //player
     fill(1);
     rect(mouseX,mouseY, 20,10);
-    
-    //edges
-    if(lvlDiff>5){
+
+    //lvl2
+    if(lvlDiff>15){
       image(gamebg2, 0, 0);
 
      for(int i = 0; i < ballCount; i++){
 
       x[i] += xSpeed[i];
       if(x[i] < 0 || x[i] > width){
-        xSpeed[i] *= -1.25;
+        xSpeed[i] *= -1.1;
       }
   
       y[i] += ySpeed[i];
       if(y[i] < 0 || y[i] > height){
-        ySpeed[i] *= -1.25;
+        ySpeed[i] *= -1.1;
       }
   
       fill(r[i], g[i], b[i]);
@@ -157,24 +153,62 @@ float bouncingRectSpeedY = 1;
       }
     }
   }
+  
+  //player
+    fill(1);
+    rect(mouseX,mouseY, 20,10);
     }
+    
+  //lvl3
+    if(lvlDiff>35){
+      image(bg4, 0, 0);
+        for(int i = 0; i < ballCount; i++){
+
+      x[i] += xSpeed[i];
+      if(x[i] < 0 || x[i] > width){
+        xSpeed[i] *= -1.18;
+      }
+  
+      y[i] += ySpeed[i];
+      if(y[i] < 0 || y[i] > height){
+        ySpeed[i] *= -1.18;
+      }
+  
+      fill(r[i], g[i], b[i]);
+      ellipse(x[i], y[i], size[i], size[i]);
+
+      if((int)x[i] > mouseX && (int)x[i] < mouseX + 20){
+        if((int)y[i] > mouseY && (int)y[i] < mouseY + 10){
+          image(clapping, 0, 0);
+        }
+      }
+    }
+    
+    //edges
     if( mouseY >= height-20){
      image(endding2, 0, 0);
-     //lvlDiff = -1;
+     lvlDiff = lvlDiff--;
     }
     if(mouseX <= 5 || mouseY <= 5){
       image(endding2, 0, 0);
-      //lvlDiff = -1;
+      lvlDiff = lvlDiff--;
        }
 
     //if (lvlDiff==-1){
       //image(endding2, 0, 0);
     //}
-       if(lvlDiff>10){
-        image(blackBg, 0, 0);
+      
+    //player
+    fill(1);
+    rect(mouseX,mouseY, 20,10);
+    
+    //good ending
+    if(lvlDiff>45){
+      image(blackBg, 0, 0);
         image(endding4, 40,-30);
     }
   }
+  System.out.println(lvlDiff);
 }
-  
+}
   

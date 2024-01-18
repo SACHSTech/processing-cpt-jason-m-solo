@@ -12,7 +12,8 @@ Put your program description here. The objective of this assignment is to produc
 be presented upon a screen with the game's name and will allow the player to press " c " to start the game, once pressed, the background of the game will appear and there will be circles randomly generated from the top of the screen and they will fall to the bottom of the screen and the player will control a bin( a rectangle) that will move at the bottom of the screen, at the start the player will also input two or more int as array and the sum or product of the array is the times that the player needs to collect the circle, if they succ seed that a image of a clapping person will appear and the game ends
 
 
-*only condition of this game is that the player can't touch the edges of the window if the edges are touched the game ends
+*only condition of this game is that the player can't touch the edges of the window if the edges are touched the game detuct one time your rect touch a circle.
 
 
-This game have two level and the difficulty is increased by the increasing ball speed and level difficulty requirement, the requirements are hard coded into the program
+This game have two level and the difficulty is increased by the increasing ball speed and level difficulty requirement, the requirements are hard coded into the program, there are three lvl in total
+And the plasyer loss the game if all the circle disappear 
