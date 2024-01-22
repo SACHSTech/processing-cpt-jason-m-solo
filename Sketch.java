@@ -11,20 +11,20 @@ public class Sketch extends PApplet {
     //size(500,500);          
   }
 
-  PImage blackBg;
-  PImage clapping;
-  PImage gameBg;
-  PImage endding2;
-  PImage jump;
-  PImage gamebg2;
-  PImage endding4;
-  PImage bg4;
-  Random myRandom = new Random();
-  int intRandom = myRandom.nextInt(width);
-  int lvlDiff = 0;
-  float circleX;
-  float speed1 = 1;
-  int ballCount = 10;
+PImage blackBg;
+PImage clapping;
+PImage gameBg;
+PImage endding2;
+PImage jump;
+PImage gamebg2;
+PImage endding4;
+PImage bg4;
+Random myRandom = new Random();
+int intRandom = myRandom.nextInt(width);
+int lvlDiff = 0;
+float circleX;
+float speed1 = 1;
+int ballCount = 10;
 
 float[] x = new float[ballCount];
 float[] y = new float[ballCount];
@@ -72,8 +72,7 @@ float bouncingRectSpeedY = 1;
   /**
    * 
    */
-  public void draw() {
-    
+  public void draw(){
     //starter screen
     image(blackBg, 0, 0);
     fill(255,0,0);
@@ -137,6 +136,10 @@ float bouncingRectSpeedY = 1;
      image(endding2, 0, 0);
      lvlDiff = lvlDiff--;
     }
+    if( mouseX >= 280){
+ image(endding2, 0, 0);
+     lvlDiff = lvlDiff--;
+    }
     if(mouseX <= 5 || mouseY <= 5){
       image(endding2, 0, 0);
       lvlDiff = lvlDiff--;
@@ -190,6 +193,10 @@ float bouncingRectSpeedY = 1;
      image(endding2, 0, 0);
      lvlDiff = lvlDiff--;
     }
+    if( mouseX >= 280){
+ image(endding2, 0, 0);
+     lvlDiff = lvlDiff--;
+    }
     if(mouseX <= 5 || mouseY <= 5){
       image(endding2, 0, 0);
       lvlDiff = lvlDiff--;
@@ -221,12 +228,12 @@ float bouncingRectSpeedY = 1;
 
       x[i] += xSpeed[i];
       if(x[i] < 0 || x[i] > width){
-        xSpeed[i] *= -1.18;
+        xSpeed[i] *= -1.16;
       }
   
       y[i] += ySpeed[i];
       if(y[i] < 0 || y[i] > height){
-        ySpeed[i] *= -1.18;
+        ySpeed[i] *= -1.16;
       }
   
       fill(r[i], g[i], b[i]);
@@ -238,8 +245,12 @@ float bouncingRectSpeedY = 1;
         }
       }
       //edges
-    if( mouseY >= height-20){
+  if( mouseY >= height-20 ){
      image(endding2, 0, 0);
+     lvlDiff = lvlDiff--;
+    }
+    if( mouseX >= 280){
+ image(endding2, 0, 0);
      lvlDiff = lvlDiff--;
     }
     if(mouseX <= 5 || mouseY <= 5){
