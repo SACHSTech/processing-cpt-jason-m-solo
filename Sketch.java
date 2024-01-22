@@ -1,12 +1,10 @@
 import processing.core.PApplet;
 import processing.core.PImage;
-
-//import java.util.ArrayList;
 import java.util.Random;
 
 public class Sketch extends PApplet {
 	
-  //float[] circleY = new float[25];
+  float[] circleY = new float[25];
   
   public void settings(){
     size(300, 150);   
@@ -44,7 +42,9 @@ float bouncingRectWidth = 20;
 float bouncingRectHeight = 20;
 float bouncingRectSpeedX = 2;
 float bouncingRectSpeedY = 1;
-
+/**
+ * 
+ */
   public void setup() {
     blackBg = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT black bg.jpg");
     clapping = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT clapping guy.jpg");
@@ -54,9 +54,9 @@ float bouncingRectSpeedY = 1;
     gamebg2 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\CPT gamebg2.jpg");
     endding4 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\endding4.jpg");
     bg4 = loadImage("C:\\Users\\majas\\github-classroom\\SACHSTech\\processing-cpt-jason-m-solo\\bg4.jpg");
-   // for(int i = 0; i < circleY.length; i++){
-    //  circleY[i] = random(height);
-    //}
+   for(int i = 0; i < circleY.length; i++){
+      circleY[i] = random(height);
+    }
 
     for(int i = 0; i < ballCount; i++){
       x[i] = random(width);
@@ -69,7 +69,9 @@ float bouncingRectSpeedY = 1;
       b[i] = random(256);
     }
   }
-
+  /**
+   * 
+   */
   public void draw() {
     
     //starter screen
@@ -91,7 +93,19 @@ float bouncingRectSpeedY = 1;
     if(key == 'c'){
       fill(0,255,51);
       image(gameBg, 0, 0);
+      
+      //snowfall
+      fill(255,255,255);
+      for (int i = 0; i < circleY.length; i++) {
+        float circleX = width * i / circleY.length;
+        ellipse(circleX, circleY[i], 5, 5);
     
+        circleY[i]++;
+    
+        if (circleY[i] > height) {
+          circleY[i] = 0;
+        }
+      }
     // lvl1
      for(int i = 0; i < ballCount; i++){
 
@@ -119,10 +133,17 @@ float bouncingRectSpeedY = 1;
           image(clapping, 0, 0);
           lvlDiff++;
         }
-      
+       if( mouseY >= height-20){
+     image(endding2, 0, 0);
+     lvlDiff = lvlDiff--;
+    }
+    if(mouseX <= 5 || mouseY <= 5){
+      image(endding2, 0, 0);
+      lvlDiff = lvlDiff--;
+       }
       }
     }
-    
+   
     //player
     fill(1);
     rect(mouseX,mouseY, 20,10);
@@ -130,6 +151,19 @@ float bouncingRectSpeedY = 1;
     //lvl2
     if(lvlDiff>15){
       image(gamebg2, 0, 0);
+        
+      //snowfall
+        fill(0,245,55);
+      for (int i = 0; i < circleY.length; i++) {
+        float circleX = width * i / circleY.length;
+        ellipse(circleX, circleY[i], 10, 10);
+    
+        circleY[i]++;
+    
+        if (circleY[i] > height) {
+          circleY[i] = 0;
+        }
+      }
 
      for(int i = 0; i < ballCount; i++){
 
@@ -152,6 +186,14 @@ float bouncingRectSpeedY = 1;
         }
       }
     }
+    if( mouseY >= height-20){
+     image(endding2, 0, 0);
+     lvlDiff = lvlDiff--;
+    }
+    if(mouseX <= 5 || mouseY <= 5){
+      image(endding2, 0, 0);
+      lvlDiff = lvlDiff--;
+       }
   }
   
   //player
@@ -162,6 +204,19 @@ float bouncingRectSpeedY = 1;
   //lvl3
     if(lvlDiff>35){
       image(bg4, 0, 0);
+        
+      //snowfall
+        fill(0,2,25);
+      for (int i = 0; i < circleY.length; i++) {
+        float circleX = width * i / circleY.length;
+        ellipse(circleX, circleY[i], 13, 13);
+    
+        circleY[i]++;
+    
+        if (circleY[i] > height) {
+          circleY[i] = 0;
+        }
+      }
         for(int i = 0; i < ballCount; i++){
 
       x[i] += xSpeed[i];
@@ -182,9 +237,7 @@ float bouncingRectSpeedY = 1;
           image(clapping, 0, 0);
         }
       }
-    }
-    
-    //edges
+      //edges
     if( mouseY >= height-20){
      image(endding2, 0, 0);
      lvlDiff = lvlDiff--;
@@ -193,6 +246,7 @@ float bouncingRectSpeedY = 1;
       image(endding2, 0, 0);
       lvlDiff = lvlDiff--;
        }
+    }
 
     //if (lvlDiff==-1){
       //image(endding2, 0, 0);
@@ -203,7 +257,7 @@ float bouncingRectSpeedY = 1;
     rect(mouseX,mouseY, 20,10);
     
     //good ending
-    if(lvlDiff>45){
+    if(lvlDiff>=45){
       image(blackBg, 0, 0);
         image(endding4, 40,-30);
     }
